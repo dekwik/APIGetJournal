@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\post;
-use Storage;
+use File;
 use Tymon\JWTAuth\facades\JWTAuth;
 
 class PostsController extends Controller
@@ -94,7 +94,7 @@ class PostsController extends Controller
         }
 
         if($posts->file !=''){
-            Storage::delete('storage/posts/'.$posts->file);
+            File::delete('uploads/'.$posts->file);
         }
         $posts->delete();
         return response()->json([
